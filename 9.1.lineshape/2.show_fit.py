@@ -55,8 +55,8 @@ if(1 == 1):
     tgraph_fit_opp = ROOT.TGraph(len_fit_opp)
     for i in range(len_fit_opp):
         tgraph_fit_opp.SetPoint(i, data_fit_opp['x'][i], data_fit_opp['y'][i])
-    tgraph_fit_opp.SetLineColor(4)
-    tgraph_fit_opp.SetLineWidth(2)
+    tgraph_fit_opp.SetLineColor(hstyle.style_color[2])
+    tgraph_fit_opp.SetLineWidth(3)
     tgraph_fit_opp.SetLineStyle(1)
     legendlist.append([tgraph_fit_opp, r'Fitting', 'l'])
     tgraph_fit_opp.Draw('Lsame')
@@ -78,8 +78,8 @@ if(1 == 1):
     tgraph_fit_opp_r = ROOT.TGraph(len_fit_opp_r)
     for i in range(len_fit_opp_r):
         tgraph_fit_opp_r.SetPoint(i, data_fit_opp_r['x'][i], data_fit_opp_r['y'][i])
-    tgraph_fit_opp_r.SetLineColor(8)
-    tgraph_fit_opp_r.SetLineWidth(2)
+    tgraph_fit_opp_r.SetLineColor(hstyle.style_color[3])
+    tgraph_fit_opp_r.SetLineWidth(3)
     tgraph_fit_opp_r.SetLineStyle(2)
     legendlist.append([tgraph_fit_opp_r, r'Resonance', 'l'])
     tgraph_fit_opp_r.Draw('Lsame')
@@ -101,8 +101,8 @@ if(1 == 1):
     tgraph_fit_opp_n = ROOT.TGraph(len_fit_opp_n)
     for i in range(len_fit_opp_n):
         tgraph_fit_opp_n.SetPoint(i, data_fit_opp_n['x'][i], data_fit_opp_n['y'][i])
-    tgraph_fit_opp_n.SetLineColor(6)
-    tgraph_fit_opp_n.SetLineWidth(2)
+    tgraph_fit_opp_n.SetLineColor(hstyle.style_color[4])
+    tgraph_fit_opp_n.SetLineWidth(3)
     tgraph_fit_opp_n.SetLineStyle(3)
     legendlist.append([tgraph_fit_opp_n, r'Continum', 'l'])
     tgraph_fit_opp_n.Draw('Lsame')
