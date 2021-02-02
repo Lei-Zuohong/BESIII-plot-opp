@@ -1,0 +1,41 @@
+# 放置版本号
+version:00-03 endl
+
+
+# 放置root文件（不需要版本号）
+real:../opp_data/realr/realr-00-01 endl
+back:../opp/topoa/topoa endl
+
+purephsp:../opp_data/simr/purephsp endl
+
+selected_real:../opp_data/selected/real endl
+selected_qqback:../opp_data/selected/qqback endl
+selected_omeganpw:../opp_data/selected/omeganpw endl
+
+
+# 放置root文件（需要版本号）
+omeganpw:../opp_data/simr/omeganpw- version
+omegapwn:../opp_data/simr/omegapwn- version
+
+
+# 放置文件夹地址
+fdata:fdata endl
+
+# 放置文件夹地址（需要版本号）
+weight:fdata/weight- version
+
+# 放置文件地址（需要版本号）
+factor:fdata/1.factor-                                              version
+
+efficiency:fdata/2.efficiency-                                      version
+efficiency_noweight:fdata/2.efficiency_noweight-                    version
+
+efficiency_adjust:fdata/2.efficiency_adjust-                        version
+efficiency_adjust_noweight:fdata/2.efficiency_adjust_noweight-      version
+
+nevent:fdata/3.nevent-                                              version
+
+section:fdata/4.section-                                            version
+
+fake:fdata/6.fake-                                                  version
+

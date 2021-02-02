@@ -1,0 +1,75 @@
+# -*- coding: UTF-8 -*-
+# Public pack
+import sys
+# Private pack
+import ROOT
+import headpy.hbes.hopp as hopp
+import headpy.hbes.hstyle as hstyle
+import headpy.hbes.hnew as hnew
+import headpy.hbes.hconst as hconst
+
+
+def plot(energy=0,
+         tree='',
+         branch='',
+         branchs=[]):
+    # 读取数据
+    massages = hnew.massage_read()
+    trees = hnew.trees_read(energy=energy,
+                            tree=tree,
+                            read=['real', 'omeganpw'])
+    selecters = hopp.selecters()
+    selecters[branch].set_by_center(hconst.pdg()['m_pi0'],
+                                    hconst.pdg()['m_pi0'])
+    selecters['momega'].set_width(0.05)
+    # 初始化数据
+    alldata = hnew.ALLDATA(trees=trees,
+                           selecters=selecters,
+                           massages=massages)
+    alldata.get_weight(data='omeganpw',
+                       energy=energy,
+                       name_weight='momegapi02_mpi02pi03',
+                       name_branch='wpi02_pi02pi03',
+                       dimension=2)
+    new_tree = alldata.trees['omeganpw']
+    new_tree = hnew.tree_cut(dict_tree=new_tree,
+                             dict_selecter=selecters,
+                             branchs=branchs)
+    num = len(new_tree[branch])
+    mass = hconst.pdg()['m_pi0']
+    tuse = new_tree[branch]
+    tweight = new_tree['wpi02_pi02pi03']
+    total_weight_left = 0
+    total_weight_right = 0
+    total_sq_left = 0
+    total_sq_right = 0
+    for i in range(num):
+        if(tuse[i] < mass):
+            total_weight_left += tweight[i]
+            total_sq_left += tweight[i] * pow(tuse[i] - mass, 2)
+        elif(tuse[i] > mass):
+            total_weight_right += tweight[i]
+            total_sq_right += tweight[i] * pow(tuse[i] - mass, 2)
+    total_sq_left = pow(total_sq_left / total_weight_left, 0.5)
+    total_sq_right = pow(total_sq_right / total_weight_right, 0.5)
+    return total_sq_left, total_sq_right
+
+
+l1, r1 = plot(energy=2.125,
+              tree='fit4c',
+              branch='mpi01',
+              branchs=['chisq', 'momega', 'mpi01', 'mpi02', 'mpi03'])
+l2, r2 = plot(energy=2.125,
+              tree='fit4c',
+              branch='mpi02',
+              branchs=['chisq', 'momega', 'mpi01', 'mpi02', 'mpi03'])
+l3, r3 = plot(energy=2.125,
+              tree='fit4c',
+              branch='mpi03',
+              branchs=['chisq', 'momega', 'mpi01', 'mpi02', 'mpi03'])
+print('l1 = %f * 3' % (l1))
+print('l2 = %f * 3' % (l2))
+print('l3 = %f * 3' % (l3))
+print('r1 = %f * 3' % (r1))
+print('r2 = %f * 3' % (r2))
+print('r3 = %f * 3' % (r3))
